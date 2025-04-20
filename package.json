@@ -1,17 +1,44 @@
 {
   "name": "omnidev2",
   "version": "1.0.0",
+  "description": "Next Generation IDE",
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com"
+  },
   "main": "electron/main.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"vite\" \"cd OmnIDEApi && dotnet run\"",
+    "clean": "rimraf dist release",
+    "build:api": "cd OmnIDEApi && dotnet publish -c Release -o ../release/api",
     "build": "vite build",
     "start": "electron .",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx",
+    "make": "npm run clean && npm run build:api && npm run build && electron-builder build --win --dir"
+  },
+  "build": {
+    "appId": "com.omniide.app",
+    "productName": "OmnIDE",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "release/api",
+        "to": "api",
+        "filter": ["**/*"]
+      }
+    ],
+    "asar": false
   },
   "dependencies": {
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "electron": "^25.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
@@ -20,6 +47,9 @@
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.4.1",
     "autoprefixer": "^10.0.0",
+    "concurrently": "^9.1.2",
+    "electron": "^25.0.0",
+    "electron-builder": "^26.0.12",
     "eslint": "^8.0.0",
     "postcss": "^8.0.0",
     "tailwindcss": "^3.0.0",
