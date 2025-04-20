@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OmnIDEApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8347b370f51bf8051b15348158abd5fd1b3b6f90")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+471d34e26258d972e42343e316722df6a16b1ed3")]
 [assembly: System.Reflection.AssemblyProductAttribute("OmnIDEApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OmnIDEApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,12 @@
+C:\Users\Ediz Arkın Kobak\Documents\GitHub\OmnIDE\release\api\OmnIDEApi.exe
+C:\Users\Ediz Arkın Kobak\Documents\GitHub\OmnIDE\release\api\appsettings.Development.json
+C:\Users\Ediz Arkın Kobak\Documents\GitHub\OmnIDE\release\api\appsettings.json
+C:\Users\Ediz Arkın Kobak\Documents\GitHub\OmnIDE\release\api\OmnIDEApi.dll
+C:\Users\Ediz Arkın Kobak\Documents\GitHub\OmnIDE\release\api\OmnIDEApi.deps.json
+C:\Users\Ediz Arkın Kobak\Documents\GitHub\OmnIDE\release\api\OmnIDEApi.runtimeconfig.json
+C:\Users\Ediz Arkın Kobak\Documents\GitHub\OmnIDE\release\api\OmnIDEApi.pdb
+C:\Users\Ediz Arkın Kobak\Documents\GitHub\OmnIDE\release\api\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\Ediz Arkın Kobak\Documents\GitHub\OmnIDE\release\api\Microsoft.OpenApi.dll
+C:\Users\Ediz Arkın Kobak\Documents\GitHub\OmnIDE\release\api\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Ediz Arkın Kobak\Documents\GitHub\OmnIDE\release\api\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Ediz Arkın Kobak\Documents\GitHub\OmnIDE\release\api\Swashbuckle.AspNetCore.SwaggerUI.dll
