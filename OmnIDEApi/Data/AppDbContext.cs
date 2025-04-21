@@ -22,12 +22,11 @@ namespace OmnIDEApi.Data
             .HasIndex(p => p.ProjectPath)
             .IsUnique();
 
-    modelBuilder.Entity<Assignment>()
-        .HasOne(a => a.Student)
-        .WithMany(s => s.Assignments)
-        .HasForeignKey(a => a.StudentID)
-        .OnDelete(DeleteBehavior.Cascade); // Optional: Cascade delete if student is deleted
-}
-
+            modelBuilder.Entity<Assignment>()
+                .HasOne(a => a.Student)
+                .WithMany(s => s.Assignments)
+                .HasForeignKey(a => a.StudentID)
+                .OnDelete(DeleteBehavior.Cascade); // Optional: Cascade delete if student is deleted
+        }
     }
 }

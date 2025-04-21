@@ -7,13 +7,13 @@ namespace OmnIDEApi.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string AssignmentID { get; set; }
+        public required string AssignmentID { get; set; }
 
         [ForeignKey("Student")]
         public int StudentID { get; set; }
 
         public bool Success { get; set; }
 
-        public virtual Student Student { get; set; }
+        public required virtual Student Student { get; set; }
     }
 }

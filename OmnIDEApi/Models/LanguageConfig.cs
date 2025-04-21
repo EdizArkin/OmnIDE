@@ -9,11 +9,11 @@ namespace OmnIDEApi.Models
 
         [Required]
         [MaxLength(100)]
-        public string LanguageName { get; set; }
+        public required string LanguageName { get; set; }
 
         [Required]
-        public string CompilerPath { get; set; }
+        public required string CompilerPath { get; set; }
 
-        public string IDESettings { get; set; }
+        public string? IDESettings { get; set; }
     }
 }

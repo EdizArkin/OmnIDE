@@ -10,13 +10,13 @@ namespace OmnIDEApi.Models
 
         [Required]
         [MaxLength(255)]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [Required]
         [MaxLength(255)]
-        public string Surname { get; set; }
+        public required string Surname { get; set; }
 
         // Navigation property
-        public ICollection<Assignment> Assignments { get; set; }
+        public required ICollection<Assignment> Assignments { get; set; }
     }
 }
