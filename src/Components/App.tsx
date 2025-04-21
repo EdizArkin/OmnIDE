@@ -22,9 +22,9 @@ declare global {
 const App = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Use preload API instead of fetch
     window.api.getProjects()
       .then(data => {
         setProjects(data);
@@ -32,12 +32,24 @@ const App = () => {
       })
       .catch(error => {
         console.error('Error:', error);
+        setError('Failed to connect to API. Please make sure the API is running.');
         setLoading(false);
       });
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="flex items-center justify-center h-screen">Loading...</div>;
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-center text-red-600">
+          <h2 className="text-xl font-bold mb-2">Error</h2>
+          <p>{error}</p>
+        </div>
+      </div>
+    );
   }
 
   return (

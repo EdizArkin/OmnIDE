@@ -13,6 +13,7 @@ namespace OmnIDEApi.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<LanguageConfig> LanguageConfigs { get; set; }
+        public DbSet<Project> Projects { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
