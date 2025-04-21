@@ -15,12 +15,12 @@ namespace OmnIDEApi.Data
         public DbSet<LanguageConfig> LanguageConfigs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-{
-    base.OnModelCreating(modelBuilder);
+        {
+            base.OnModelCreating(modelBuilder);
 
-    modelBuilder.Entity<ProjectConfiguration>()
-        .HasIndex(p => p.ProjectPath)
-        .IsUnique();
+            modelBuilder.Entity<ProjectConfiguration>()
+            .HasIndex(p => p.ProjectPath)
+            .IsUnique();
 
     modelBuilder.Entity<Assignment>()
         .HasOne(a => a.Student)
