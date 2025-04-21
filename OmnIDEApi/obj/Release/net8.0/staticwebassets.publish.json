@@ -1,12 +1,11 @@
 {
   "Version": 1,
-  "Hash": "A9H3Eq+ZFqv2gcsJvwXjtWR1fu3OcyrukJaO92419/w=",
+  "Hash": "BDpwWfvDGNvJ0co29nqIeJTMb4j4mkhdUGuKGedmeSM=",
   "Source": "OmnIDEApi",
   "BasePath": "_content/OmnIDEApi",
   "Mode": "Default",
   "ManifestType": "Publish",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": []
 }
