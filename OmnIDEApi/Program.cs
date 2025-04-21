@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using OmnIDEApi.Data;
+using OmnIDEApi.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -13,6 +17,11 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IProjectConfigurationRepository, ProjectConfigurationRepository>();
 
 var app = builder.Build();
 
