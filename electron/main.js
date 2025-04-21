@@ -79,8 +79,8 @@ function cleanup() {
 
 function startApi() {
   const apiPath = isDev 
-    ? path.join(__dirname, '../release/api/OmnIDEApi.exe')
-    : path.join(process.resourcesPath, 'api/OmnIDEApi.exe');  // Changed this line
+    ? path.join(__dirname, '../release/api/OmnIDEApi')
+    : path.join(process.resourcesPath, 'api/OmnIDEApi');  // Changed this line
 
   console.log('Process resourcesPath:', process.resourcesPath); // Add debug logging
   console.log('API Path:', apiPath);
