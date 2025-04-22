@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using OmnIDEApi.Data;
 using OmnIDEApi.Repositories;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -35,5 +36,7 @@ app.UseHttpsRedirection();
 app.UseCors("AllowElectron");
 app.UseAuthorization();
 app.MapControllers();
+
+
 
 app.Run();
