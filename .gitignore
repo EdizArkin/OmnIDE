@@ -69,3 +69,4 @@ tsconfig.tsbuildinfo
 /OmniIDEApi/obj/
 /OmniIDEApi/Properties/
 /OmniIDEApi/**/*.user
+.fake
