@@ -84,16 +84,16 @@ function startApi() {
 
   console.log('Process resourcesPath:', process.resourcesPath); // Add debug logging
   console.log('API Path:', apiPath);
-
+/*
   if (!fs.existsSync(apiPath)) {
     console.error('API not found at:', apiPath);
     dialog.showErrorBox('API Error', `API executable not found at: ${apiPath}\nPlease build the API first.`);
     app.quit();
     return null;
   }
-
+*/
   apiProcess = spawn(apiPath);
-
+/*
   apiProcess.stdout.on('data', (data) => {
     console.log(`API: ${data}`);
   });
@@ -108,14 +108,7 @@ function startApi() {
     dialog.showErrorBox('API Error', 'Failed to start API. Please check if .NET Runtime is installed.');
     app.quit();
   });
-
-  apiProcess.on('exit', (code) => {
-    console.log(`API process exited with code ${code}`);
-    if (code !== 0) {
-      dialog.showErrorBox('API Error', `API process exited with code ${code}`);
-      app.quit();
-    }
-  });
+*/
 
   return apiProcess;
 }

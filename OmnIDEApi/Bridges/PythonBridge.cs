@@ -8,6 +8,7 @@ namespace OmnIDE.Bridges
     public class PythonBridge : IDisposable
     {
         private static bool _initialized = false;
+        private static readonly object _initLock = new object();
 
         public PythonBridge()
         {
@@ -18,21 +19,39 @@ namespace OmnIDE.Bridges
         {
             if (!_initialized)
             {
-                // Set Python Home to your Python installation
-                Runtime.PythonDLL = @"C:\Python39\python39.dll"; // Adjust path to your Python installation
-                PythonEngine.Initialize();
-                _initialized = true;
+                lock (_initLock)
+                {
+                    if (!_initialized)
+                    {
+                        try
+                        {
+                            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+                            // Updated path to look one level up
+                            string pythonPath = Path.GetFullPath(Path.Combine(basePath, "..", "python-embed", "python39.dll"));
+                            
+                            Runtime.PythonDLL = pythonPath;
+                            PythonEngine.Initialize();
+                            _initialized = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new InvalidOperationException("Failed to initialize Python runtime.", ex);
+                        }
+                    }
+                }
             }
         }
 
         private void AddPythonPath()
         {
-            string pythonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Python");
+            string pythonScriptsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Python");
+            string pythonLibPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "python-embed", "Lib");
 
             using (Py.GIL())
             {
                 dynamic sys = Py.Import("sys");
-                sys.path.append(pythonPath);
+                sys.path.append(pythonScriptsPath);
+                sys.path.append(pythonLibPath);
             }
         }
 

@@ -70,3 +70,4 @@ tsconfig.tsbuildinfo
 /OmniIDEApi/Properties/
 /OmniIDEApi/**/*.user
 .fake
+/python-embed
