@@ -5,11 +5,24 @@ using System.IO;
 
 namespace OmnIDE.Bridges
 {
-    public class PythonBridge
+    public class PythonBridge : IDisposable
     {
+        private static bool _initialized = false;
+
         public PythonBridge()
         {
-            PythonEngine.Initialize();
+            InitializePython();
+        }
+
+        private void InitializePython()
+        {
+            if (!_initialized)
+            {
+                // Set Python Home to your Python installation
+                Runtime.PythonDLL = @"C:\Python39\python39.dll"; // Adjust path to your Python installation
+                PythonEngine.Initialize();
+                _initialized = true;
+            }
         }
 
         private void AddPythonPath()
@@ -68,9 +81,13 @@ namespace OmnIDE.Bridges
             }
         }
 
-        public void Shutdown()
+        public void Dispose()
         {
-            PythonEngine.Shutdown();
+            if (_initialized)
+            {
+                PythonEngine.Shutdown();
+                _initialized = false;
+            }
         }
     }
 }
