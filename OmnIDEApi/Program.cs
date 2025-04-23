@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OmnIDEApi.Data;
 using OmnIDEApi.Repositories;
+using OmnIDEApi.Test;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,6 +38,7 @@ app.UseCors("AllowElectron");
 app.UseAuthorization();
 app.MapControllers();
 
-
+var zipTest = new PythonBridgeZipTest();
+zipTest.TestExtractZip();
 
 app.Run();

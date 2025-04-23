@@ -1,7 +1,7 @@
 using System;
 using OmnIDE.Bridges;
 
-namespace OmnIDE.Test
+namespace OmnIDEApi.Test
 {
     public class PythonBridgeZipTest
     {

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using OmnIDEApi.Models;
+using OmnIDEApi.Test;
 
 namespace OmnIDEApi.Controllers
 {
@@ -17,6 +18,8 @@ namespace OmnIDEApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Project>> GetProjects()
         {
+            var zipTest = new PythonBridgeZipTest();
+            zipTest.TestExtractZip();
             var projects = new List<Project>
             {
                 new Project
