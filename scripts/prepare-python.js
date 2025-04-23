@@ -5,7 +5,7 @@ const { execSync } = require('child_process');
 
 const PYTHON_VERSION = '3.9.13';
 const PYTHON_EMBED_URL = `https://www.python.org/ftp/python/${PYTHON_VERSION}/python-${PYTHON_VERSION}-embed-amd64.zip`;
-const PYTHON_DIR = path.join(__dirname, '..', 'python-embed');
+const PYTHON_DIR = path.join(__dirname, '..','OmnIDEApi','Python','python-embed');
 
 async function downloadPython() {
     try {

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using OmnIDE.Bridges;
+using Python.Runtime;
 
 namespace OmnIDEApi.Test
 {
@@ -10,8 +11,10 @@ namespace OmnIDEApi.Test
         {
             try
             {
-                // Check Python installation first
-                string pythonPath = Path.Combine("..", "python-embed", "python39.dll");
+                // Get the project root directory
+                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                string pythonPath = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..","Python", "python-embed", "python39.dll"));
+                
                 if (!File.Exists(pythonPath))
                 {
                     Console.WriteLine($"Python DLL not found at: {pythonPath}");
@@ -19,13 +22,20 @@ namespace OmnIDEApi.Test
                     return false;
                 }
 
+                // Ensure Python is not initialized before setting DLL path
+                if (PythonEngine.IsInitialized)
+                {
+                    PythonEngine.Shutdown();
+                }
+
+                // Set Python DLL path
+                Runtime.PythonDLL = pythonPath;
+
+                // Create bridge after setting DLL path
                 var bridge = new PythonBridge();
 
-                string baseDir = AppDomain.CurrentDomain.BaseDirectory 
-                    ?? throw new InvalidOperationException("Base directory cannot be null");
-
-                string zipFolderPath = Path.GetFullPath(Path.Combine(baseDir, "..", "Zip"));
-                string extractToPath = Path.GetFullPath(Path.Combine(baseDir, "..", "TargetFolder"));
+                string zipFolderPath = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", "Zip"));
+                string extractToPath = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", "TargetFolder"));
 
                 Console.WriteLine($"Using Python DLL from: {pythonPath}");
                 Console.WriteLine($"Zip folder path: {zipFolderPath}");
