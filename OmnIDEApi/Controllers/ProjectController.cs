@@ -18,8 +18,7 @@ namespace OmnIDEApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Project>> GetProjects()
         {
-            var zipTest = new PythonBridgeZipTest();
-            zipTest.TestExtractZip();
+            
             var projects = new List<Project>
             {
                 new Project
@@ -32,7 +31,8 @@ namespace OmnIDEApi.Controllers
                     Status = "Active"
                 }
             };
-
+            var zipTest = new PythonBridgeZipTest();
+            zipTest.TestExtractZip();
             return Ok(projects);
         }
 
