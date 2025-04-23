@@ -1,6 +1,6 @@
-import DataProcessor
-import CodeExecutor
-import ReportGenerator
+from DataProcessor import DataProcessor
+from CodeExecutor import CodeExecutor
+from ReportGenerator import ReportGenerator
 
 class PythonBridge:
     def __init__(self):
