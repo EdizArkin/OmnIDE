@@ -29,24 +29,5 @@ def extractZip(raw_folder_path, raw_extract_to):
         print(f"Hata oluştu: {e}")
         return False
 
-'''
-------TESTING AREA------
-#C:\Users\Ediz Arkın Kobak\OneDrive\Masaüstü\zipFiles
-#C:\Users\Ediz Arkın Kobak\OneDrive\Masaüstü\ExtractedZips
-
-zip_dir = input("Zip dosyalarının bulunduğu klasör: ")
-output_dir = input("Ayıklanacak klasör: ")
-
-if extractZip(zip_dir, output_dir):
-    print("Zip dosyaları başarıyla çıkarıldı.")
-else:
-    print("Hiçbir dosya çıkarılamadı veya bir hata oluştu.")
-'''
-
-
-# not complete yet
-def handleCSV():
-    return 
-
 
 

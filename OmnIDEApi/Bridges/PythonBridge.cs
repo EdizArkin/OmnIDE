@@ -10,12 +10,13 @@ namespace OmnIDE.Bridges
         private static bool _initialized = false;
         private static readonly object _initLock = new object();
 
-        public PythonBridge()
+        public PythonBridge(string pythonPath)
         {
-            InitializePython();
+            InitializePython(pythonPath);
         }
 
-        private void InitializePython()
+
+        private void InitializePython(string pythonPath)
         {
             if (!_initialized)
             {
@@ -26,18 +27,6 @@ namespace OmnIDE.Bridges
                         try
                         {
                             // Set Python DLL path before initializing
-                            string pythonPath;
-                            if (Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true")
-                            {
-                                pythonPath = @"C:\Python39\python39.dll";
-                            }
-                            else
-                            {
-                                // Path for production - relative to executable
-                                string basePath = AppDomain.CurrentDomain.BaseDirectory;
-                                pythonPath = Path.Combine(basePath, "python-embed", "python39.dll");
-                            }
-
                             Runtime.PythonDLL = pythonPath;
                             PythonEngine.Initialize();
                             _initialized = true;
@@ -54,7 +43,7 @@ namespace OmnIDE.Bridges
         private void AddPythonPath()
         {
             string pythonScriptsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Python");
-            string pythonLibPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "python-embed", "Lib");
+            string pythonLibPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "python-embed");
 
             using (Py.GIL())
             {
