@@ -47,7 +47,7 @@ using (var scope = app.Services.CreateScope())
             // Only seed if this is a new database (no projects exist)
             if (!context.Projects.Any())
             {
-                var testProject = new Project
+                var testProject1 = new Project
                 {
                     Name = "Test Project",
                     Description = "This is a test project",
@@ -55,7 +55,17 @@ using (var scope = app.Services.CreateScope())
                     Language = "C#",
                     Status = "Active"
                 };
-                context.Projects.Add(testProject);
+
+                var testProject2 = new Project
+                {
+                    Name = "Test Project 2",
+                    Description = "This is another test project",
+                    CreatedDate = DateTime.UtcNow,
+                    Language = "JavaScript",
+                    Status = "Active"
+                };
+
+                context.Projects.AddRange(testProject1, testProject2);
                 await context.SaveChangesAsync();
             }
         }

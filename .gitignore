@@ -69,3 +69,8 @@ tsconfig.tsbuildinfo
 /OmniIDEApi/obj/
 /OmniIDEApi/Properties/
 /OmniIDEApi/**/*.user
+
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
