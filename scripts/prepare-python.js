@@ -38,6 +38,7 @@ async function downloadPython() {
 
                         console.log('Extraction complete. Installing pip.'); // Debug log
                         await installPip();
+                        enableSiteImport();
                         console.log('Pip installation complete. Creating Python Lib directory.'); // Debug log
                         await createPythonLibDir();
                         console.log('Python Lib directory created. Installing requirements.'); // Debug log
@@ -114,17 +115,25 @@ function installPip() {
     return new Promise((resolve, reject) => {
         const pythonExe = `"${path.join(PYTHON_DIR, 'python.exe')}"`; // Ensure quotes
         const getPipScriptUrl = 'https://bootstrap.pypa.io/get-pip.py';
-        const getPipScriptPath = `"${path.join(PYTHON_DIR, 'get-pip.py')}"`; // Ensure quotes
+        const getPipScriptPath = path.join(PYTHON_DIR, 'get-pip.py'); // No quotes for fs operations
 
         https.get(getPipScriptUrl, (response) => {
-            const file = fs.createWriteStream(getPipScriptPath.replace(/"/g, '')); // Remove quotes for fs
+            const file = fs.createWriteStream(getPipScriptPath);
             response.pipe(file);
             file.on('close', () => {
                 try {
-                    const command = `${pythonExe} ${getPipScriptPath}`;
+                    console.log('Running get-pip.py to install pip...');
+                    const command = `${pythonExe} "${getPipScriptPath}"`;
                     execSync(command, { stdio: 'inherit' });
-                    fs.unlinkSync(getPipScriptPath.replace(/"/g, '')); // Remove quotes for fs
+                    fs.unlinkSync(getPipScriptPath); // Clean up
                     console.log('pip installed successfully.');
+
+                    // Verify pip installation
+                    const pipExe = path.join(PYTHON_DIR, 'Scripts', 'pip.exe');
+                    if (!fs.existsSync(pipExe)) {
+                        throw new Error('pip installation failed: pip.exe not found.');
+                    }
+                    console.log('pip is available at:', pipExe);
                     resolve();
                 } catch (error) {
                     console.error('Error installing pip:', error);
@@ -136,6 +145,24 @@ function installPip() {
             reject(error);
         });
     });
+}
+
+const PYTHON_PTH_FILE = path.join(PYTHON_DIR, 'python39._pth'); // veya versiyonuna göre pythonXY._pth
+
+function enableSiteImport() {
+    console.log('Enabling import site in python39._pth...');
+    try {
+        if (fs.existsSync(PYTHON_PTH_FILE)) {
+            let contents = fs.readFileSync(PYTHON_PTH_FILE, 'utf-8');
+            const updated = contents.replace(/^#import site$/m, 'import site');
+            fs.writeFileSync(PYTHON_PTH_FILE, updated, 'utf-8');
+            console.log('Successfully enabled import site.');
+        } else {
+            console.warn('Could not find python39._pth to enable site import.');
+        }
+    } catch (error) {
+        console.error('Error enabling import site:', error);
+    }
 }
 
 // Run it all
