@@ -62,7 +62,7 @@ namespace OmnIDE.Bridges
                 dynamic pyBridge = Py.Import("python_bridge");
                 dynamic bridgeInstance = pyBridge.PythonBridge();
 
-                dynamic result = bridgeInstance.call_data_processor_ExtractZip(sourcePath, destinationPath);
+                dynamic result = bridgeInstance.call_data_processor(sourcePath, destinationPath);
 
                 return (bool)result;
             }

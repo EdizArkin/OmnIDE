@@ -35,8 +35,8 @@ namespace OmnIDEApi.Test
         // Create bridge after setting DLL path
         var bridge = new PythonBridge(pythonPath);
 
-        string zipFolderPath = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", "Zip"));
-        string extractToPath = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", "TargetFolder"));
+        string zipFolderPath = Path.GetFullPath(Path.Combine(baseDir,"..", "..", "..", "..", "Zip"));
+        string extractToPath = Path.GetFullPath(Path.Combine(baseDir,"..", "..", "..", "..", "TargetFolder"));
 
         Console.WriteLine($"Using Python DLL from: {pythonPath}");
         Console.WriteLine($"Zip folder path: {zipFolderPath}");
