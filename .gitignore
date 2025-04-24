@@ -69,6 +69,8 @@ tsconfig.tsbuildinfo
 /OmniIDEApi/obj/
 /OmniIDEApi/Properties/
 /OmniIDEApi/**/*.user
+.fake
+/OmnIDEApi/Python/python-embed
 
 # SQLite database files
 *.db

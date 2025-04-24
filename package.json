@@ -14,7 +14,8 @@
     "build": "vite build",
     "start": "electron .",
     "lint": "eslint . --ext .ts,.tsx",
-    "make": "npm run clean && npm run build:api && npm run build && electron-builder build --win --dir"
+    "prepare-python": "node scripts/prepare-python.js",
+    "make": "npm run clean && npm run prepare-python && npm run build:api && npm run build && electron-builder build --win --dir"
   },
   "build": {
     "appId": "com.omniide.app",
@@ -31,6 +32,13 @@
       {
         "from": "release/api",
         "to": "api",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "python-embed",
+        "to": "python-embed",
         "filter": [
           "**/*"
         ]

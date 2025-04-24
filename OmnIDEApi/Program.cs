@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using OmnIDEApi.Data;
 using OmnIDEApi.Repositories;
+using OmnIDEApi.Test;
+
 using OmnIDEApi.Models;  // Project sınıfı için ekleyin
 
 var builder = WebApplication.CreateBuilder(args);
@@ -88,5 +90,10 @@ app.UseHttpsRedirection();
 app.UseCors("AllowElectron");
 app.UseAuthorization();
 app.MapControllers();
+
+var zipTest = new PythonBridgeZipTest();
+zipTest.TestExtractZip();
+var compileTest = new PythonBridgeCompileTest();
+compileTest.TestCompileDirectory();
 
 app.Run();

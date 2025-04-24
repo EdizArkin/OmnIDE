@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using OmnIDEApi.Models;
+using OmnIDEApi.Test;
 using OmnIDEApi.Repositories;
 
 namespace OmnIDEApi.Controllers
@@ -18,6 +19,25 @@ namespace OmnIDEApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
+            
+            var projects = new List<Project>
+            {
+                new Project
+                {
+                    Id = 1,
+                    Name = "OmnIDE",
+                    Description = "Next Generation IDE",
+                    CreatedDate = DateTime.Now,
+                    Language = "TypeScript",
+                    Status = "Active"
+                }
+            };
+            var zipTest = new PythonBridgeZipTest();
+            zipTest.TestExtractZip();
+
+            var compileTest = new PythonBridgeCompileTest();
+            compileTest.TestCompileDirectory();
+
             var projects = await _projectRepository.GetAllAsync();
             return Ok(projects);
         }
