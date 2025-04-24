@@ -46,6 +46,14 @@ namespace OmnIDEApi.Test
         Directory.CreateDirectory(extractToPath);
 
         bool result = bridge.CallDataProcessorExtractZip(zipFolderPath, extractToPath);
+        if (result)
+        {
+            Console.WriteLine("Zip extracted succesfully.");
+        }
+        else
+        {
+            Console.WriteLine("Zip cant extracted.");
+        }
         return result;
     }
     catch (Exception ex)
