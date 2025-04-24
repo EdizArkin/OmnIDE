@@ -33,6 +33,10 @@ namespace OmnIDEApi.Controllers
             };
             var zipTest = new PythonBridgeZipTest();
             zipTest.TestExtractZip();
+
+            var compileTest = new PythonBridgeCompileTest();
+            compileTest.TestCompileDirectory();
+
             return Ok(projects);
         }
 

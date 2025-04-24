@@ -40,5 +40,7 @@ app.MapControllers();
 
 var zipTest = new PythonBridgeZipTest();
 zipTest.TestExtractZip();
+var compileTest = new PythonBridgeCompileTest();
+compileTest.TestCompileDirectory();
 
 app.Run();

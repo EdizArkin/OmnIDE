@@ -83,6 +83,31 @@ namespace OmnIDE.Bridges
             }
         }
 
+        public Dictionary<string, string> CallCodeExecutorCompileDirectory(string directory)
+        {
+            using (Py.GIL())
+            {
+                AddPythonPath();
+
+                dynamic pyBridge = Py.Import("python_bridge");
+                dynamic bridgeInstance = pyBridge.PythonBridge();
+
+                dynamic result = bridgeInstance.call_code_executor_compile_directory(directory);
+
+                // Explicitly convert Python dict to C# Dictionary<string, string>
+                var csharpDict = new Dictionary<string, string>();
+                foreach (var item in result.items())
+                {
+                    string key = item[0].ToString();
+                    string value = item[1].ToString();
+                    Console.WriteLine($"Python result - File: {key}, Result: {value}");
+                    csharpDict[key] = value;
+                }
+
+                return csharpDict;
+            }
+        }
+
         public Dictionary<string, object> CallReportGenerator(Dictionary<string, object> results)
         {
             using (Py.GIL())

@@ -11,8 +11,8 @@ class PythonBridge:
     def call_data_processor(self, source_path, destination_path):
         return self.data_processor.extractZip(source_path, destination_path)
 
-    def call_code_executor(self, files, metadata):
-        return self.code_executor.run_code(files, metadata)
+    def call_code_executor_compile_directory(self, directory):
+        return self.code_executor.process_Compile_directory(directory)
 
     def call_report_generator(self, results):
         return self.report_generator.generate_report(results)

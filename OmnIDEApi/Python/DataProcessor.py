@@ -3,6 +3,7 @@ import pandas as pd
 from pathlib import Path
 
 class DataProcessor:
+
     def extractZip(self, raw_folder_path, raw_extract_to):
         """Extracts all .zip files in the given folder to the specified directory.
         Returns True if at least one file is extracted successfully, otherwise False."""

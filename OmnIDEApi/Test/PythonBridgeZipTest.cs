@@ -22,21 +22,22 @@ namespace OmnIDEApi.Test
                     return false;
                 }
 
-                // Ensure Python is not initialized before setting DLL path
+                // Check if Python is already initialized
                 if (PythonEngine.IsInitialized)
                 {
-                    Console.WriteLine("PythonEngine zaten başlatılmış. Shutdown edilmeden DLL yolu değiştirilemez.");
-                    return false;
+                    Console.WriteLine("PythonEngine is already initialized. Using the existing Python runtime.");
                 }
-
-                // Set Python DLL path
-                Runtime.PythonDLL = pythonPath;
+                else
+                {
+                    // Set Python DLL path
+                    Runtime.PythonDLL = pythonPath;
+                }
 
                 // Create bridge after setting DLL path
                 var bridge = new PythonBridge(pythonPath);
 
-                string zipFolderPath = Path.GetFullPath(Path.Combine(baseDir,"..", "..", "..", "..", "Zip"));
-                string extractToPath = Path.GetFullPath(Path.Combine(baseDir,"..", "..", "..", "..", "TargetFolder"));
+                string zipFolderPath = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", "..", "TestFiles"));
+                string extractToPath = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", "..", "CompileTestFiles"));
 
                 Console.WriteLine($"Using Python DLL from: {pythonPath}");
                 Console.WriteLine($"Zip folder path: {zipFolderPath}");
@@ -48,11 +49,11 @@ namespace OmnIDEApi.Test
                 bool result = bridge.CallDataProcessorExtractZip(zipFolderPath, extractToPath);
                 if (result)
                 {
-                    Console.WriteLine("Zip extracted succesfully.");
+                    Console.WriteLine("Zip extracted successfully.");
                 }
                 else
                 {
-                    Console.WriteLine("Zip cant extracted.");
+                    Console.WriteLine("Zip could not be extracted.");
                 }
                 return result;
             }
@@ -63,6 +64,5 @@ namespace OmnIDEApi.Test
                 return false;
             }
         }
-
     }
 }
