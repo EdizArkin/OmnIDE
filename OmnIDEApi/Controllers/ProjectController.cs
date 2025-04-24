@@ -38,7 +38,7 @@ namespace OmnIDEApi.Controllers
             var compileTest = new PythonBridgeCompileTest();
             compileTest.TestCompileDirectory();
 
-            var projects = await _projectRepository.GetAllAsync();
+            await _projectRepository.GetAllAsync();
             return Ok(projects);
         }
 
